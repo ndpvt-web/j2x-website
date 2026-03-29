@@ -1,26 +1,134 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================================
+   J2X DESIGN TOKENS -- Tailwind CSS v4 Theme Configuration
+   All tokens from design.md mapped to CSS custom properties
+   ============================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* --- Brand Palette: Teal --- */
+  --color-teal-50: #F0F9FB;
+  --color-teal-100: #D1EEF4;
+  --color-teal-300: #4DB8CC;
+  --color-teal-500: #1A7A8F;
+  --color-teal-700: #11505E;
+  --color-teal-800: #0D3D4A;
+  --color-teal-900: #0A2E38;
+  --color-teal-950: #071E26;
+
+  /* --- Accent Palette: Coral --- */
+  --color-coral-100: #FDE8E4;
+  --color-coral-500: #F07060;
+  --color-coral-600: #E85D4A;
+  --color-coral-700: #D14A38;
+
+  /* --- Data Colors --- */
+  --color-data-positive: #22C55E;
+  --color-data-negative: #EF4444;
+  --color-data-neutral: #0097D1;
+  --color-data-new: #F59E0B;
+  --color-data-pending: #8B5CF6;
+
+  /* --- Neutral Palette --- */
+  --color-gray-50: #F8FAFB;
+  --color-gray-100: #EEF2F4;
+  --color-gray-300: #C4CED3;
+  --color-gray-500: #6B7E86;
+  --color-gray-700: #374248;
+  --color-gray-900: #1A2328;
+
+  /* --- Font Families --- */
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", Menlo, monospace;
+
+  /* --- Font Sizes (Type Scale) --- */
+  --text-display-xl: 4.5rem;
+  --text-display-xl--line-height: 1.1;
+  --text-display-lg: 3.5rem;
+  --text-display-lg--line-height: 1.15;
+  --text-display-md: 2.5rem;
+  --text-display-md--line-height: 1.2;
+  --text-heading-lg: 1.75rem;
+  --text-heading-lg--line-height: 1.3;
+  --text-heading-md: 1.375rem;
+  --text-heading-md--line-height: 1.35;
+  --text-heading-sm: 1.125rem;
+  --text-heading-sm--line-height: 1.4;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.6;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.6;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.5;
+  --text-data-lg: 1.125rem;
+  --text-data-lg--line-height: 1.4;
+  --text-data-md: 0.875rem;
+  --text-data-md--line-height: 1.4;
+  --text-data-sm: 0.75rem;
+  --text-data-sm--line-height: 1.3;
+  --text-metric: 4rem;
+  --text-metric--line-height: 1.0;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.08), 0 0 1px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.12), 0 0 1px rgba(0,0,0,0.06);
+  --shadow-glass: 0 4px 30px rgba(0,0,0,0.1);
+
+  /* --- Animations --- */
+  --animate-logo-scroll: logo-scroll 40s linear infinite;
+  --animate-gradient-rotate: gradient-rotate 3s linear infinite;
+  --animate-dot-pulse-1: dot-pulse 1.4s ease-in-out infinite;
+  --animate-dot-pulse-2: dot-pulse 1.4s ease-in-out 0.2s infinite;
+  --animate-dot-pulse-3: dot-pulse 1.4s ease-in-out 0.4s infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* --- Keyframes --- */
+@keyframes logo-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
+@keyframes gradient-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dot-pulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+/* --- Base Styles --- */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: var(--color-gray-700);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Utility Classes --- */
+.bg-warm-gradient {
+  background: radial-gradient(
+    ellipse 80% 60% at 30% 50%,
+    rgba(242, 195, 133, 0.15),
+    rgba(100, 227, 209, 0.15),
+    transparent
+  );
+}
+
+.bg-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* --- Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
